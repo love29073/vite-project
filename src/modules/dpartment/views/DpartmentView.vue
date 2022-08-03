@@ -1,5 +1,5 @@
 <template>
-  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-md-4 py-sm-2">
+  
     <el-button @click="addDepartmentVisible = true" class="mb-3">新增部門</el-button>
     <!-- table start -->
     <el-table label-width="100px" :data="fetchDepartment" width="100%">
@@ -8,7 +8,7 @@
       <el-table-column label="部門地點" prop="loc" />
       <el-table-column align="right">
         <template #header>
-          <el-input v-model="search" size="small" placeholder="Type to search" />
+          <el-input v-model="search" size="small" placeholder="輸入部門名稱以搜尋" />
         </template>
         <template #default="scope">
           <el-button size="small" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
@@ -20,6 +20,9 @@
     <!-- add dialog start -->
     <el-dialog v-model="addDepartmentVisible" title="新增部門">
       <el-form :model="formDepartment">
+        <el-form-item label="部門ID" :label-width="formLabelWidth">
+          <el-input-number v-model="formDepartment.deptno" :step="10" step-strictly />
+        </el-form-item>
         <el-form-item label="部門名稱" :label-width="formLabelWidth">
           <el-input v-model="formDepartment.dname" autocomplete="off" />
         </el-form-item>
@@ -48,12 +51,11 @@
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="updateDepartmentVisible = false">取消</el-button>
-          <el-button type="primary" @click="updateDepartment">確定修改</el-button>
+          <el-button type="primary" @click="updateDepartmentConfirm">確定修改</el-button>
         </span>
       </template>
     </el-dialog>
     <!-- update dialog end -->
-  </main>
 </template>
 
 <script lang="ts">
@@ -70,20 +72,16 @@ export default defineComponent({
     const addDepartmentVisible = ref(false);
     const updateDepartmentVisible = ref(false);
     const formDepartment = reactive({
+      deptno: 0,
       dname: '',
       loc: ''
     });
     const formLabelWidth = '100px';
+    const confirmUpdate = ref(false);
 
     //掛載時，載入部門全部資訊
     onMounted(() => {
-      useDpartment.getAll().then((res) => {
-        department.value = res.data;
-        // console.log(department.value)
-      })
-      .catch((error) => {
-          console.log(error, '失敗');
-      })
+      getDepartment();
     })
 
     //搜尋部門關鍵字
@@ -109,13 +107,15 @@ export default defineComponent({
     //新增部門
     const addDepartment = () => {
       let data = {
+        deptno: formDepartment.deptno,
         dname: formDepartment.dname,
         loc: formDepartment.loc
       }
 
+      let idIndex = department.value.map(function(e) { return e.deptno; }).indexOf(formDepartment.deptno);
       let nameIndex = department.value.map(function(e) { return e.dname; }).indexOf(formDepartment.dname);
 
-      if(nameIndex == -1){
+      if(nameIndex == -1 && idIndex == -1){
         useDpartment.create(data)
         .then((res) => {
           addDepartmentVisible.value = false;
@@ -129,7 +129,7 @@ export default defineComponent({
           console.log(error, '失敗');
         })
       }else{
-        ElMessage.error('部門名稱不可重複。');
+        ElMessage.error('部門ID / 部門名稱不可重複。');
       }
     }
 
@@ -137,15 +137,31 @@ export default defineComponent({
     const handleEdit= (index: number, row: IDepartmentVo) => {
       console.log(index,row.deptno)
 
+      formDepartment.deptno = row.deptno;
       formDepartment.dname = row.dname;
       formDepartment.loc = row.loc;
       updateDepartmentVisible.value = true;
-
-      
+    }
+    const updateDepartmentConfirm = () => {
+      confirmUpdate.value = true;
       let data = {
+        deptno: formDepartment.deptno,
         dname: formDepartment.dname,
         loc: formDepartment.loc
       }
+
+      useDpartment.update(formDepartment.deptno, data)
+      .then((res) => {
+        updateDepartmentVisible.value = false;
+        getDepartment();
+        ElMessage({
+          message: '更新部門成功。',
+          type: 'success',
+        })
+      })
+      .catch((error) => {
+        console.log(error, '失敗');
+      })
     }
 
     //刪除部門
@@ -189,7 +205,8 @@ export default defineComponent({
       updateDepartmentVisible,
       addDepartment,
       handleEdit,
-      handleDelete
+      handleDelete,
+      updateDepartmentConfirm
     }
   }
 })
