@@ -9,6 +9,8 @@
 @import "../node_modules/bootstrap/scss/utilities";
 @import "../node_modules/bootstrap/scss/utilities/api";
 @import "../node_modules/bootstrap/scss/transitions";
+// Custom
+@import "./transition";
 
 //google font
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
@@ -21,4 +23,14 @@
 }
 main{
   background-color: #F5F5F5;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }

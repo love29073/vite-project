@@ -1,10 +1,16 @@
 <template>
-  <RouterView />
+  <component :is="layout">
+    <router-view />
+  </component>
 </template>
 
 <script setup lang="ts">
-  import { RouterLink, RouterView } from "vue-router";
-</script>
+import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 
-<style scoped>
-</style>
+const defaultLayout = 'default';
+const { currentRoute } = useRouter();
+const layout = computed(
+  () => `${currentRoute.value.meta.layout || defaultLayout}-layout`
+)
+</script>

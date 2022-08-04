@@ -22,7 +22,7 @@
               <template #dropdown>
                 <el-dropdown-menu>
                   <el-dropdown-item>個人資料</el-dropdown-item>
-                  <el-dropdown-item divided>登出</el-dropdown-item>
+                  <el-dropdown-item divided @click="logout">登出</el-dropdown-item>
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
@@ -35,12 +35,18 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue';
+  import { useRouter } from 'vue-router'
   import { UserFilled } from '@element-plus/icons-vue';
 
   export default defineComponent({
     name: 'HeaderBar',
     setup() {
-      return { UserFilled };
+      const router = useRouter()
+      
+      const logout = () => {
+        router.replace('/login')
+      }
+      return { UserFilled, logout };
     }
   });
 </script>

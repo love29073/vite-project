@@ -1,5 +1,5 @@
 <template>
-  <div> 
+  <div>
     <el-button @click="addDepartmentVisible = true" class="mb-3">新增部門</el-button>
     <!-- table start -->
     <el-table label-width="100px" :data="fetchDepartment" width="100%">
@@ -61,14 +61,14 @@
 
 <script lang="ts">
 import { defineComponent, ref, reactive, onMounted, computed } from 'vue';
-import type IDepartmentVo from '../models/IDepartmentVo';
-import useDpartment from '../services/useDpartment';
+import type IEmployeeVo from '../models/IEmployeeVo';
+import useEmployee from '../services/useEmployee';
 import { ElMessage, ElMessageBox } from 'element-plus';
 
 export default defineComponent({
-  name: 'DpartmentView',
+  name: 'EmployeeView',
   setup(){
-    let department = ref<IDepartmentVo[]>([]);
+    let department = ref<IEmployeeVo[]>([]);
     let search = ref('');
     const addDepartmentVisible = ref(false);
     const updateDepartmentVisible = ref(false);
@@ -96,7 +96,7 @@ export default defineComponent({
 
     //抓取部門全部資訊
     const getDepartment = () => {
-      useDpartment.getAll().then((res) => {
+      useEmployee.getAll().then((res) => {
         department.value = res.data;
         // console.log(department.value)
       })
@@ -117,7 +117,7 @@ export default defineComponent({
       let nameIndex = department.value.map(function(e) { return e.dname; }).indexOf(formDepartment.dname);
 
       if(nameIndex == -1 && idIndex == -1){
-        useDpartment.create(data)
+        useEmployee.create(data)
         .then((res) => {
           addDepartmentVisible.value = false;
           getDepartment();
@@ -135,7 +135,7 @@ export default defineComponent({
     }
 
     //編輯(更新)部門
-    const handleEdit= (index: number, row: IDepartmentVo) => {
+    const handleEdit= (index: number, row: IEmployeeVo) => {
       console.log(index,row.deptno)
 
       formDepartment.deptno = row.deptno;
@@ -151,7 +151,7 @@ export default defineComponent({
         loc: formDepartment.loc
       }
 
-      useDpartment.update(formDepartment.deptno, data)
+      useEmployee.update(formDepartment.deptno, data)
       .then((res) => {
         updateDepartmentVisible.value = false;
         getDepartment();
@@ -166,7 +166,7 @@ export default defineComponent({
     }
 
     //刪除部門
-    const handleDelete = (index: number, row: IDepartmentVo) => {
+    const handleDelete = (index: number, row: IEmployeeVo) => {
       ElMessageBox.confirm(
         '確定要刪除此部門？',
         '提示',
@@ -177,7 +177,7 @@ export default defineComponent({
         }
       )
       .then(() => {
-        useDpartment.delete(row.deptno)
+        useEmployee.delete(row.deptno)
         .then((res) => {
           getDepartment();
           ElMessage({
