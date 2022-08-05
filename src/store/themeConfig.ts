@@ -8,5 +8,10 @@ export const useThemeConfig = defineStore("themeConfig", {
     return {
       isCollapse: false
     } as ThemeConfigState;
-  }
+  },
+  actions: {
+    switch(){
+      this.isCollapse = !this.isCollapse;
+    }
+  },
 });

@@ -1,5 +1,5 @@
 <template>
-    <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+    <nav class="sidebar collapse" :class="[isCollapse ? 'd-md-block col-md-3 col-lg-2' : 'd-md-none']">
       <div class="user">
         <div class="title py-3">
           <div class="d-flex align-items-center">
@@ -25,9 +25,18 @@
 </template>
 
 <script lang="ts">
-  export default {
-      
-  }
+import { computed, defineComponent } from 'vue';
+import { useThemeConfig } from '@/store/themeConfig';
+
+export default defineComponent({
+  name: 'SideBar',
+  setup() {
+    const store = useThemeConfig()
+    const isCollapse = computed(()=> store.isCollapse)
+
+    return{ isCollapse }
+  }    
+})
 </script>
 
 <style lang="scss" scoped>

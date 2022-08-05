@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import DpartmentView from '@/modules/dpartment/views/DpartmentView.vue'
 import EmployeeView from '@/modules/employee/views/EmployeeView.vue'
 import Login from '../views/Login.vue'
+import LoginAfter from '../views/LoginAfter.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,9 +13,15 @@ const router = createRouter({
       component: DpartmentView
     },    
     {
-      path: "/login",
+      path: "/userlogin",
       name: "Login",
       component: Login,
+      meta: { layout: "empty" },
+    },
+    {
+      path: "/login",
+      name: "LoginAfter",
+      component: LoginAfter,
       meta: { layout: "empty" },
     },
     {

@@ -24,13 +24,8 @@
 main{
   background-color: #F5F5F5;
 }
-
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
+::-webkit-scrollbar { width: 4px; height: 6px; }
+::-webkit-scrollbar-button { width: 4px; height:0px; }
+::-webkit-scrollbar-track { background: #e1e1e1; box-shadow: 0px 0px 3px #fffafa inset; }
+::-webkit-scrollbar-thumb { background: #b3b2b2; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #847e7e; }

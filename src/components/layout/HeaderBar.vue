@@ -6,7 +6,7 @@
           <div class="logo">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Service_mark.svg/1280px-Service_mark.svg.png" alt="">
           </div>
-          <div class="toggle-btn d-flex align-items-center">
+          <div @click="toggleSidebar" class="toggle-btn d-flex align-items-center">
             <svg data-v-715ce9d0="" version="1.1" viewBox="0 0 1024 1024" class="svg-icon svg-fill" style="width: 20px; height: 20px;">
               <path pid="0" d="M408 442h480a8 8 0 0 0 8-8v-56a8 8 0 0 0-8-8H408a8 8 0 0 0-8 8v56a8 8 0 0 0 8 8zm-8 204a8 8 0 0 0 8 8h480a8 8 0 0 0 8-8v-56a8 8 0 0 0-8-8H408a8 8 0 0 0-8 8v56zm504-486H120a8 8 0 0 0-8 8v56a8 8 0 0 0 8 8h784a8 8 0 0 0 8-8v-56a8 8 0 0 0-8-8zm0 632H120a8 8 0 0 0-8 8v56a8 8 0 0 0 8 8h784a8 8 0 0 0 8-8v-56a8 8 0 0 0-8-8zM142.4 642.1L298.7 519a8.8 8.8 0 0 0 0-13.9L142.4 381.9a8.9 8.9 0 0 0-14.4 6.9v246.3a8.9 8.9 0 0 0 14.4 7z"/>
             </svg>
@@ -34,27 +34,33 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
-  import { useRouter } from 'vue-router'
-  import { UserFilled } from '@element-plus/icons-vue';
+import { defineComponent } from 'vue';
+import { useRouter } from 'vue-router'
+import { UserFilled } from '@element-plus/icons-vue';
+import { useThemeConfig } from '@/store/themeConfig';
 
-  export default defineComponent({
-    name: 'HeaderBar',
-    setup() {
-      const router = useRouter()
-      
-      const logout = () => {
-        router.replace('/login')
-      }
-      return { UserFilled, logout };
+export default defineComponent({
+  name: 'HeaderBar',
+  setup() {
+    const router = useRouter()
+    const store = useThemeConfig()
+
+    function toggleSidebar() {
+      store.switch();
     }
-  });
+    const logout = () => {
+      router.replace('/login')
+    }
+    return { UserFilled, toggleSidebar, logout };
+  }
+});
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/scss/mixin.scss";
   .logo-bar{
     height: 45px;
+    user-select: none;
     border-right: 1px solid #ddd;
     .logo{
       position: relative;

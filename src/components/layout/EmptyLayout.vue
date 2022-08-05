@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">  
-  export default {
-    name: 'EmptyLayout'      
-  }
+export default {
+  name: 'EmptyLayout'      
+}
 </script>
