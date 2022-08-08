@@ -49,7 +49,7 @@ export default defineComponent({
       store.switch();
     }
     const logout = () => {
-      router.replace('/login')
+      router.replace('/userlogin')
     }
     return { UserFilled, toggleSidebar, logout };
   }
