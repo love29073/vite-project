@@ -1,38 +1,75 @@
 import { defineStore } from 'pinia';
+import { ref } from 'vue';
+import axios from 'axios';
+import qs from 'qs';
 
-type UserConfigState = {
-  response_type: string;
-  client_id: string;
-  redirect_uri: string;
-  scope: string;
-  code_challenge_method: string;
-  code_challenge: string;
-  codeVerifier: string;
-};
-export const useUserConfig = defineStore("userConfig", {
-  state: () => {
-    return {
-      response_type: 'code',
-      client_id: '77or6qbh1de45pogvubjtn9mnr',
-      redirect_uri: 'http://localhost:3000/login',
-      scope: 'email',
-      code_challenge_method: 'S256',
-      code_challenge: '',
-      codeVerifier: ''
-    } as UserConfigState;
-  },
-  actions: {
-    async getUrl(){
-      let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~";
-      let length = 43;
+export const useUserConfig = defineStore("userConfig", () => {
+  //state
+  const host = 'https://gjerigoe0egdjo8023.auth.ap-northeast-1.amazoncognito.com/oauth2';
+  const response_type = 'code';
+  const client_id = '77or6qbh1de45pogvubjtn9mnr';
+  const redirect_uri = 'http://localhost:3000/login';
+  const scope = 'email%20openid';
+  const code_challenge_method = 'S256';
+  let code_challenge = '';
+  let codeVerifier = '';
+  const grant_type = 'authorization_code';
+  let access_token = '';
 
-      for (var i = 0; i < length; i++) {
-        this.codeVerifier += possible.charAt(Math.floor(Math.random() * possible.length));
+  //action
+  const getUrl = async() => {
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~";
+    let length = 43;
+
+    for (var i = 0; i < length; i++) {
+      codeVerifier += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    sessionStorage.setItem("codeVerifier", codeVerifier)
+    let digest = await crypto.subtle.digest("SHA-256",new TextEncoder().encode(codeVerifier));
+    code_challenge = btoa(String.fromCharCode(...new Uint8Array(digest))).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+    
+    return Promise.resolve(`${host}/authorize?response_type=${response_type}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&code_challenge_method=${code_challenge_method}&code_challenge=${code_challenge}`)
+  }
+
+  const getToken = (code: string) => {
+    let codeVerifier_data = sessionStorage.getItem('codeVerifier');
+    let data = {
+      'grant_type': grant_type,
+      'client_id': client_id,
+      'code': code,
+      'code_verifier': codeVerifier_data,
+      'redirect_uri': redirect_uri
+    }
+
+    axios.post(`${host}/token`, qs.stringify(data), { headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' } })
+    .then((res) => {
+      access_token = res.data.access_token;
+      sessionStorage.removeItem('codeVerifier');
+      getInfo();
+    })
+    .catch((error) => {
+      console.log(error, '失敗');
+    })
+  }
+
+  const getInfo = () => {
+    axios.get(`${host}/userInfo`, {
+    // axios.get(`http://mydemoalb-82893112.ap-northeast-1.elb.amazonaws.com/api/userInfo`, {
+      headers: {
+        'Authorization': `Bearer ${access_token}`
       }
-      let digest = await crypto.subtle.digest("SHA-256",new TextEncoder().encode(this.codeVerifier));
-      this.code_challenge = btoa(String.fromCharCode(...new Uint8Array(digest))).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+    })
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((error) => {
+      console.error(error, '失敗');
+    })
+  }
 
-      return Promise.resolve(`https://gjerigoe0egdjo8023.auth.ap-northeast-1.amazoncognito.com/oauth2/authorize?response_type=${this.response_type}&client_id=${this.client_id}&redirect_uri=${this.redirect_uri}&scope=${this.scope}&code_challenge_method=${this.code_challenge_method}&code_challenge=${this.code_challenge}`)
-    },
+
+  return {
+    getUrl,
+    getToken
   }
 });

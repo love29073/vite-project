@@ -20,21 +20,21 @@
 
 <script lang="ts">
 import { useUserConfig } from '@/store/userConfig';
-import { onMounted ,ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 export default {
  setup(){
-    const user = useUserConfig();
-    let url =  ref('');
-    onMounted(()=>{
-       user.getUrl().then(s=>{
-        console.log(s)
-        url.value = s;
-       })
+    const store = useUserConfig();    
+    const { getUrl } = store;
+
+    let url = ref('');
+    onMounted(() => {
+      getUrl().then( data => {
+        url.value = data;
+      })
     })
 
-
-    return{url}
+    return{ url }
   }
 }
 

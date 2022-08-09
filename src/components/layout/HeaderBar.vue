@@ -6,7 +6,7 @@
           <div class="logo">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Service_mark.svg/1280px-Service_mark.svg.png" alt="">
           </div>
-          <div @click="toggleSidebar" class="toggle-btn d-flex align-items-center">
+          <div @click="toggleSidebar()" class="toggle-btn d-flex align-items-center">
             <svg data-v-715ce9d0="" version="1.1" viewBox="0 0 1024 1024" class="svg-icon svg-fill" style="width: 20px; height: 20px;">
               <path pid="0" d="M408 442h480a8 8 0 0 0 8-8v-56a8 8 0 0 0-8-8H408a8 8 0 0 0-8 8v56a8 8 0 0 0 8 8zm-8 204a8 8 0 0 0 8 8h480a8 8 0 0 0 8-8v-56a8 8 0 0 0-8-8H408a8 8 0 0 0-8 8v56zm504-486H120a8 8 0 0 0-8 8v56a8 8 0 0 0 8 8h784a8 8 0 0 0 8-8v-56a8 8 0 0 0-8-8zm0 632H120a8 8 0 0 0-8 8v56a8 8 0 0 0 8 8h784a8 8 0 0 0 8-8v-56a8 8 0 0 0-8-8zM142.4 642.1L298.7 519a8.8 8.8 0 0 0 0-13.9L142.4 381.9a8.9 8.9 0 0 0-14.4 6.9v246.3a8.9 8.9 0 0 0 14.4 7z"/>
             </svg>
@@ -42,12 +42,10 @@ import { useThemeConfig } from '@/store/themeConfig';
 export default defineComponent({
   name: 'HeaderBar',
   setup() {
-    const router = useRouter()
-    const store = useThemeConfig()
+    const router = useRouter();
+    const store = useThemeConfig();
+    const { toggleSidebar } = store;
 
-    function toggleSidebar() {
-      store.switch();
-    }
     const logout = () => {
       router.replace('/userlogin')
     }

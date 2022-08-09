@@ -25,14 +25,15 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
+import { defineComponent } from 'vue';
 import { useThemeConfig } from '@/store/themeConfig';
+import { storeToRefs } from 'pinia';
 
 export default defineComponent({
   name: 'SideBar',
   setup() {
-    const store = useThemeConfig()
-    const isCollapse = computed(()=> store.isCollapse)
+    const store = useThemeConfig();
+    const { isCollapse } = storeToRefs(store);
 
     return{ isCollapse }
   }    
