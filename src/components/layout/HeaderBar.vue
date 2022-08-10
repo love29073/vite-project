@@ -33,25 +33,19 @@
   </header>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { UserFilled } from '@element-plus/icons-vue';
-import { useThemeConfig } from '@/store/themeConfig';
+import { UserFilled } from '@element-plus/icons-vue'
+import { useThemeConfig } from '@/store/themeConfig'
 
-export default defineComponent({
-  name: 'HeaderBar',
-  setup() {
-    const router = useRouter();
-    const store = useThemeConfig();
-    const { toggleSidebar } = store;
+const router = useRouter()
+const store = useThemeConfig()
+const { toggleSidebar } = store
 
-    const logout = () => {
-      router.replace('/userlogin')
-    }
-    return { UserFilled, toggleSidebar, logout };
-  }
-});
+const logout = () => {
+  localStorage.setItem('isAuthenticated', 'false')
+  router.replace('/login')
+}
 </script>
 
 <style lang="scss" scoped>

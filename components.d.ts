@@ -29,6 +29,7 @@ declare module '@vue/runtime-core' {
     HeaderBar: typeof import('./src/components/layout/HeaderBar.vue')['default']
     HeaderLayout: typeof import('./src/components/header/HeaderLayout.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    MainLayout: typeof import('./src/components/layout/MainLayout.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Sidebar: typeof import('./src/components/Sidebar/index.vue')['default']

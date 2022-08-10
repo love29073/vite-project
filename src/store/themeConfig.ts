@@ -1,9 +1,9 @@
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 export const useThemeConfig = defineStore("themeConfig", () => {
   //state
-  const isCollapse = ref<boolean>(false);
+  const isCollapse = ref<boolean>(true);
   
   //action
   const toggleSidebar = () => {

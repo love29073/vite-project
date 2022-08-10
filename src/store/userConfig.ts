@@ -1,7 +1,7 @@
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
-import axios from 'axios';
-import qs from 'qs';
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
+import axios from 'axios'
+import qs from 'qs'
 
 export const useUserConfig = defineStore("userConfig", () => {
   //state
@@ -50,6 +50,7 @@ export const useUserConfig = defineStore("userConfig", () => {
     })
     .catch((error) => {
       console.log(error, '失敗');
+      loginSuccess.value = false;
     })
   }
 
@@ -63,12 +64,13 @@ export const useUserConfig = defineStore("userConfig", () => {
     .then((res) => {
       console.log(res.data);
       loginSuccess.value = true;
+      localStorage.setItem('isAuthenticated', loginSuccess.value.toString());
     })
     .catch((error) => {
       console.error(error, '失敗');
+      loginSuccess.value = false;
     })
   }
-
 
   return {
     getUrl,

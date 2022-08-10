@@ -1,43 +1,51 @@
 <template>
-  <main class="col-md-4 col-12">   
-    <section class="login-wrapper p-5">        
+  <div class="container-fluid">
+    <div class="row p-5 d-flex justify-content-center align-content-center">
+      <main class="col-12">   
+        <section class="login-wrapper p-5">        
           <h2 class="title">Login</h2>
           <a :href="url">Login</a>
         </section>
-    <!-- <suspense>
-      <template v-slot:default>
-				<section class="login-wrapper p-5">        
-          <h2 class="title">Login</h2>
-          <a :href="url">Login</a>
-        </section>
-			</template>
-      <template v-slot:fallback>
-				<h3>loading...</h3>
-			</template>      
-    </suspense> -->
-  </main>
+      </main>
+    </div>
+  </div>  
 </template>
 
-<script lang="ts">
-import { useUserConfig } from '@/store/userConfig';
-import { onMounted, ref } from 'vue';
+<script setup lang="ts">
+import { useUserConfig } from '@/store/userConfig'
+import { onMounted, watch, ref } from 'vue'
+import { useRoute,useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { ElMessage } from 'element-plus'
 
-export default {
- setup(){
-    const store = useUserConfig();    
-    const { getUrl } = store;
+const store = useUserConfig()
+const route = useRoute()
+const router = useRouter()
+const { getToken } = store
+const { getUrl } = store
+const { loginSuccess } = storeToRefs(store)
+let url = ref('')
 
-    let url = ref('');
-    onMounted(() => {
-      getUrl().then( data => {
-        url.value = data;
-      })
+onMounted(() => {
+  let code:any = route.query.code;
+  if(!code){
+    getUrl().then( data => {
+      url.value = data;
     })
-
-    return{ url }
+  }else{
+    getToken(code)
   }
-}
+})
 
+watch(loginSuccess, (newValue, oldValue)=> {
+  if(newValue == true){
+    ElMessage({
+      message: '登入成功。',
+      type: 'success',
+    })
+    router.push({ name: "Dashboard" });
+  }
+})
 </script>
 
 <style lang="scss">
