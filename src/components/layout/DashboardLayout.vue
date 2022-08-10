@@ -4,9 +4,9 @@
     <div class="row">
       <SideBar></SideBar>
       <main class="ms-sm-auto px-md-4 py-md-4 py-sm-2" :class="[isCollapse ? 'col-md-9 col-lg-10' : 'col-md-12 col-lg-12']">
-        <transition name="fade-scale" mode="out-in">
-          <slot />
-        </transition>
+          <transition name="fade-scale" mode="out-in">
+            <slot></slot>
+          </transition>
       </main>
     </div>
   </div>

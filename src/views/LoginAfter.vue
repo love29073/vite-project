@@ -7,17 +7,31 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-import { onMounted } from 'vue';
-import { useUserConfig } from '@/store/userConfig'
+import { useRoute,useRouter } from 'vue-router'
+import { onMounted, watch } from 'vue';
+import { useUserConfig } from '@/store/userConfig';
+import { storeToRefs } from 'pinia';
+import { ElMessage } from 'element-plus';
 
 const route = useRoute();
+const router = useRouter();
 const store = useUserConfig();    
 const { getToken } = store;
+const { loginSuccess } = storeToRefs(store);
 
 onMounted(() => {
   let code:any = route.query.code;
   getToken(code);
+})
+
+watch(loginSuccess, (newValue, oldValue)=> {
+  if(newValue == true){
+    ElMessage({
+      message: '登入成功。',
+      type: 'success',
+    })
+    router.replace('/');
+  }
 })
 </script>
 

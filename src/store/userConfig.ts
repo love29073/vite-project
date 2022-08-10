@@ -15,6 +15,7 @@ export const useUserConfig = defineStore("userConfig", () => {
   let codeVerifier = '';
   const grant_type = 'authorization_code';
   let access_token = '';
+  let loginSuccess = ref(false);
 
   //action
   const getUrl = async() => {
@@ -43,8 +44,8 @@ export const useUserConfig = defineStore("userConfig", () => {
 
     axios.post(`${host}/token`, qs.stringify(data), { headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' } })
     .then((res) => {
-      access_token = res.data.access_token;
       sessionStorage.removeItem('codeVerifier');
+      access_token = res.data.access_token;
       getInfo();
     })
     .catch((error) => {
@@ -61,6 +62,7 @@ export const useUserConfig = defineStore("userConfig", () => {
     })
     .then((res) => {
       console.log(res.data);
+      loginSuccess.value = true;
     })
     .catch((error) => {
       console.error(error, '失敗');
@@ -70,6 +72,7 @@ export const useUserConfig = defineStore("userConfig", () => {
 
   return {
     getUrl,
-    getToken
+    getToken,
+    loginSuccess
   }
 });
