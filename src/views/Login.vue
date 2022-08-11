@@ -13,9 +13,9 @@
 
 <script setup lang="ts">
 import { useUserConfig } from '@/store/userConfig'
+import { storeToRefs } from 'pinia'
 import { onMounted, watch, ref } from 'vue'
 import { useRoute,useRouter } from 'vue-router'
-import { storeToRefs } from 'pinia'
 import { ElMessage } from 'element-plus'
 
 const store = useUserConfig()
@@ -27,6 +27,7 @@ const { loginSuccess } = storeToRefs(store)
 let url = ref('')
 
 onMounted(() => {
+
   let code:any = route.query.code;
   if(!code){
     getUrl().then( data => {

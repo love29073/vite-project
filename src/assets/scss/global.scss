@@ -24,6 +24,11 @@
 main{
   background-color: #F5F5F5;
 }
+a{
+  color: unset;
+  text-decoration: none;
+}
+
 ::-webkit-scrollbar { width: 4px; height: 6px; }
 ::-webkit-scrollbar-button { width: 4px; height:0px; }
 ::-webkit-scrollbar-track { background: #e1e1e1; box-shadow: 0px 0px 3px #fffafa inset; }

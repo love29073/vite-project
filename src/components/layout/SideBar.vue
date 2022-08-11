@@ -11,36 +11,34 @@
           </div>
         </div>
       </div>
-      <div class="mt-10">
-        <router-link
-          class="flex items-center px-6 py-2 mt-4 duration-200 border-l-4"
-          to="/">首頁</router-link>
-      </div>
-      <div class="mt-10">
-        <router-link
-          class="flex items-center px-6 py-2 mt-4 duration-200 border-l-4"
-          to="/employee">GENERAL</router-link>
-      </div>
+      <el-menu :default-active="activePath">
+        <sidebar-item v-for="(menu, key) in allRoutes" :key="key" :menu="menu" :path="menu.path" />
+      </el-menu>
     </nav>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { useThemeConfig } from '@/store/themeConfig';
-import { storeToRefs } from 'pinia';
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useThemeConfig } from '@/store/themeConfig'
+import { storeToRefs } from 'pinia'
+import { useRouter, useRoute } from 'vue-router'
+import SidebarItem from './SidebarItem.vue'
 
-export default defineComponent({
-  name: 'SideBar',
-  setup() {
-    const store = useThemeConfig();
-    const { isCollapse } = storeToRefs(store);
+const store = useThemeConfig()
+const { isCollapse } = storeToRefs(store)
+const route = useRoute()
+const router = useRouter()
 
-    return{ isCollapse }
-  }    
+const allRoutes = router.options.routes
+const activePath = computed(() => {
+  return route.path
 })
 </script>
 
 <style lang="scss" scoped>
+  .el-menu{
+    border-right: 0px;
+  }
   .sidebar{
     height: 100vh;
     border-right: 1px solid #ddd;

@@ -22,7 +22,9 @@
               <template #dropdown>
                 <el-dropdown-menu>
                   <el-dropdown-item>個人資料</el-dropdown-item>
-                  <el-dropdown-item divided @click="logout">登出</el-dropdown-item>
+                  <el-dropdown-item divided>
+                    <a :href="logoutUrl" @click="logout">登出</a>
+                  </el-dropdown-item>
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
@@ -34,17 +36,20 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
 import { UserFilled } from '@element-plus/icons-vue'
 import { useThemeConfig } from '@/store/themeConfig'
+import { useUserConfig } from '@/store/userConfig'
+import { storeToRefs } from 'pinia'
 
-const router = useRouter()
-const store = useThemeConfig()
-const { toggleSidebar } = store
+const storeTheme = useThemeConfig()
+const storUser = useUserConfig()
+const { toggleSidebar } = storeTheme
+const { logoutUrl } = storeToRefs(storUser)
+
+console.log(logoutUrl.value)
 
 const logout = () => {
   localStorage.setItem('isAuthenticated', 'false')
-  router.replace('/login')
 }
 </script>
 

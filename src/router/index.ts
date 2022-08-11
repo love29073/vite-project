@@ -2,11 +2,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import MainLayout from '@/components/layout/MainLayout.vue'
 
+/**
+ * 如果需要緩存頁面，在meta裡新增 keepAlive: true
+ * **/
+
 export const dashboardRoute: RouteRecordRaw = {
-  path: '/',
+  path: '',
   component: MainLayout,
   redirect: '/dashboard',
-  meta: { breadcrumb: false },
+  meta: { title: '首頁', breadcrumb: false, menuType: 1 },
   children: [
     {
       path: 'dashboard',
@@ -21,23 +25,24 @@ const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/redirect',
     component: MainLayout,
-    meta: { hidden: true, title: '頁面跳轉', hiddenTab: true },
+    meta: { hidden: true, title: '頁面跳轉' },
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: () => import('@/views/Redirect.vue')
+        component: () => import('@/views/Redirect.vue'),
+        meta: { hidden: true }
       }
     ]
   },
   {
     path: '/404',
     component: () => import('@/views/NotFound.vue'),
-    meta: { hidden: true, title: '404' },
+    meta: { title: '404', hidden: true }
   },
   {
     path: '/:pathMatch(.*)*',
     redirect: '/404',
-    meta: { hidden: true },
+    meta: { hidden: true }
   }
 ]
 
@@ -46,28 +51,22 @@ const routes: RouteRecordRaw[] = [
     path: '/login',
     name: 'Login',
     component: () => import('@/views/Login.vue'),
-    meta: { hidden: true, title: '登入' }
+    meta: { title: '登入', hidden: true }
   },
   {
     path: '/dpartment',
-    name: 'Modal',
+    name: 'dpartment',
     component: MainLayout,
     redirect: '/dpartment/index',
-    meta: { breadcrumb: false },
+    meta: { title: '部門', breadcrumb: false, menuType: 2 },
     children: [
       {
         path: 'index',
         name: 'DpartmentView',
         component: () => import('@/modules/dpartment/views/DpartmentView.vue'),
-        meta: { title: '部門', askBeforeCloseTab: true }
+        meta: { title: '部門' }
       }
     ]
-  },
-  {
-    path: '/https://github.com/1esse/vue-clownfish-admin-elem',
-    component: undefined,
-    redirect: 'https://github.com/1esse/vue-clownfish-admin-elem',
-    meta: { title: 'github', external: true }
   }
 ]
 

@@ -16,6 +16,7 @@ export const useUserConfig = defineStore("userConfig", () => {
   const grant_type = 'authorization_code';
   let access_token = '';
   let loginSuccess = ref(false);
+  const logoutUrl = ref(`https://gjerigoe0egdjo8023.auth.ap-northeast-1.amazoncognito.com/logout?client_id=${client_id}&logout_uri=${redirect_uri}`);
 
   //action
   const getUrl = async() => {
@@ -75,6 +76,7 @@ export const useUserConfig = defineStore("userConfig", () => {
   return {
     getUrl,
     getToken,
+    logoutUrl,
     loginSuccess
   }
 });
