@@ -60,10 +60,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, onMounted, computed } from 'vue';
-import type IDepartmentVo from '../models/IDepartmentVo';
-import useDpartment from '../services/useDpartment';
-import { ElMessage, ElMessageBox } from 'element-plus';
+import { defineComponent, ref, reactive, onMounted, computed } from 'vue'
+import type IDepartmentVo from '../models/IDepartmentVo'
+import apiDepartment from '../services/apiDepartment'
+import { ElMessage, ElMessageBox } from 'element-plus'
 
 export default defineComponent({
   name: 'DpartmentView',
@@ -96,9 +96,8 @@ export default defineComponent({
 
     //抓取部門全部資訊
     const getDepartment = () => {
-      useDpartment.getAll().then((res) => {
+      apiDepartment.getAll().then((res) => {
         department.value = res.data;
-        // console.log(department.value)
       })
       .catch((error) => {
           console.log(error, '失敗');
@@ -117,7 +116,7 @@ export default defineComponent({
       let nameIndex = department.value.map(function(e) { return e.dname; }).indexOf(formDepartment.dname);
 
       if(nameIndex == -1 && idIndex == -1){
-        useDpartment.create(data)
+        apiDepartment.create(data)
         .then((res) => {
           addDepartmentVisible.value = false;
           getDepartment();
@@ -151,7 +150,7 @@ export default defineComponent({
         loc: formDepartment.loc
       }
 
-      useDpartment.update(formDepartment.deptno, data)
+      apiDepartment.update(formDepartment.deptno, data)
       .then((res) => {
         updateDepartmentVisible.value = false;
         getDepartment();
@@ -177,7 +176,7 @@ export default defineComponent({
         }
       )
       .then(() => {
-        useDpartment.delete(row.deptno)
+        apiDepartment.delete(row.deptno)
         .then((res) => {
           getDepartment();
           ElMessage({

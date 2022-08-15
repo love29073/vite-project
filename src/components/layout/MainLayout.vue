@@ -1,36 +1,36 @@
 <template>
-  <HeaderBar></HeaderBar>
+  <header-bar/>
   <div class="container-fluid">
     <div class="row">
-      <SideBar></SideBar>
-      <main class="ms-sm-auto px-md-4 py-md-4 py-sm-2" :class="[isCollapse ? 'col-md-9 col-lg-10' : 'col-md-12 col-lg-12']">
-        <RouterView v-slot="{ Component, route }">
+      <side-bar/>
+      <main class="ms-sm-auto px-md-4 py-md-4 py-sm-2 main-content" :class="[isCollapse ? 'col-md-9 col-lg-10' : 'col-md-12 col-lg-12']">
+        <router-view v-slot="{ Component, route }">
           <!-- 緩存頁面 -->
-          <Transition name="fade-scale" mode="out-in">
+          <transition name="fade-scale" mode="out-in">
             <keep-alive>
               <component :is="Component" v-if="$route.meta.keepAlive" :key="route.path"/>
             </keep-alive>
-          </Transition>
+          </transition>
           <!-- 非緩存頁面 -->
-          <Transition name="fade-scale" mode="out-in">
+          <transition name="fade-scale" mode="out-in">
             <component :is="Component" v-if="!$route.meta.keepAlive" :key="route.path"/>
-          </Transition>
-        </RouterView>
+          </transition>
+        </router-view>
       </main>
     </div>
   </div>
 </template>
 
-<script  lang="ts">
+<script lang="ts">
 import HeaderBar from '@/components/layout/HeaderBar.vue'
 import SideBar from '@/components/layout/SideBar.vue'
 import { defineComponent, computed, ref } from 'vue'
-import { useThemeConfig } from '@/store/themeConfig'
+import { useThemeConfig } from '@/store/useThemeConfig'
 import { storeToRefs } from 'pinia'
   
 export default defineComponent({
   name: 'MainLayout',
-  components: {HeaderBar, SideBar},
+  components: { HeaderBar, SideBar },
   setup() {
     const store = useThemeConfig()
     const { isCollapse } = storeToRefs(store)
@@ -41,7 +41,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-  main{
+  .main-content{
     height: 100vh;
+    transition: all 0.45s ease;
   }
 </style>

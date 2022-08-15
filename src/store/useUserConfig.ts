@@ -63,7 +63,7 @@ export const useUserConfig = defineStore("userConfig", () => {
       }
     })
     .then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       loginSuccess.value = true;
       localStorage.setItem('isAuthenticated', loginSuccess.value.toString());
     })

@@ -1,5 +1,5 @@
 <template v-if="!props.menu.meta?.hidden">
-  <el-sub-menu v-if="props.menu.meta?.menuType === 3" :index="menuPath">
+  <el-sub-menu v-if="props.menu.meta?.menuType === 3" :index="menuPath" key="second-floor">
     <template #title>
       <span>{{ props.menu.meta?.title }}</span>
     </template>
@@ -7,7 +7,7 @@
       <sidebar-item v-if="!children.meta?.hidden" :menu="children" :path="`${menuPath}/${children.path}`" />
     </template>
   </el-sub-menu>
-  <router-link v-else :to="menuPath">
+  <router-link v-else :to="menuPath" key="normal-floor">
     <el-menu-item :index="menuPath" v-if="!props.menu.meta?.hidden">
       <template #title>
         <span>{{ props.menu.meta?.menuType === 1 ? props.menu.children && props.menu.children[0].meta?.title : props.menu.meta?.title }}</span>
@@ -28,7 +28,8 @@ const props = defineProps({
   },
   path: {
     type: String,
-    default: ''
+    default: '',
+    required: true
   }
 })
 

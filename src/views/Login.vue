@@ -12,10 +12,10 @@
 </template>
 
 <script setup lang="ts">
-import { useUserConfig } from '@/store/userConfig'
+import { useUserConfig } from '@/store/useUserConfig'
 import { storeToRefs } from 'pinia'
 import { onMounted, watch, ref } from 'vue'
-import { useRoute,useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 
 const store = useUserConfig()

@@ -37,8 +37,8 @@
 
 <script setup lang="ts">
 import { UserFilled } from '@element-plus/icons-vue'
-import { useThemeConfig } from '@/store/themeConfig'
-import { useUserConfig } from '@/store/userConfig'
+import { useThemeConfig } from '@/store/useThemeConfig'
+import { useUserConfig } from '@/store/useUserConfig'
 import { storeToRefs } from 'pinia'
 
 const storeTheme = useThemeConfig()

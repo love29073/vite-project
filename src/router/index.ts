@@ -4,6 +4,11 @@ import MainLayout from '@/components/layout/MainLayout.vue'
 
 /**
  * 如果需要緩存頁面，在meta裡新增 keepAlive: true
+ * 
+ * menuType
+ * 1 一般為首頁 / -> 只顯示第一個子項
+ * 2 為無子選單的選單項 /config -> /config/person 無上下級，使用一級title
+ * 3 正常選單 /system -> /system/1 | /system/2 有上下級
  * **/
 
 export const dashboardRoute: RouteRecordRaw = {
@@ -62,8 +67,8 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: 'index',
-        name: 'DpartmentView',
-        component: () => import('@/modules/dpartment/views/DpartmentView.vue'),
+        name: 'DepartmentView',
+        component: () => import('@/modules/dpartment/views/DepartmentView.vue'),
         meta: { title: '部門' }
       }
     ]

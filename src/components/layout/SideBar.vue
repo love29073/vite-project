@@ -1,5 +1,5 @@
 <template>
-    <nav class="sidebar collapse" :class="[isCollapse ? 'd-md-block col-md-3 col-lg-2' : 'd-md-none']">
+    <nav class="sidebar" :class="[isCollapse ? 'col-md-3 col-lg-2' : 'notShow']">
       <div class="user">
         <div class="title py-3">
           <div class="d-flex align-items-center">
@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useThemeConfig } from '@/store/themeConfig'
+import { useThemeConfig } from '@/store/useThemeConfig'
 import { storeToRefs } from 'pinia'
 import { useRouter, useRoute } from 'vue-router'
 import SidebarItem from './SidebarItem.vue'
@@ -41,7 +41,18 @@ const activePath = computed(() => {
   }
   .sidebar{
     height: 100vh;
+    opacity: 1;
+    transition: all 0.45s ease;
+    transform: translateX(0%);
     border-right: 1px solid #ddd;
+
+    &.notShow{
+      position: fixed;
+      opacity: 0;
+      flex: 0 0 auto;
+      width: 0%;
+      transform: translateX(-100%);
+    }
     .user{
       border-bottom: 1px solid #ddd;
       .name{
