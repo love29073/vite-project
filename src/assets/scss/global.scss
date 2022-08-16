@@ -13,24 +13,39 @@
 @import "./transition";
 
 //google font
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap");
 
 #app {
   margin: 0 auto;
   color: #333;
   font-weight: normal;
-  font-family: 'Noto Sans TC', sans-serif;
+  font-family: "Noto Sans TC", sans-serif;
 }
-main{
-  background-color: #F5F5F5;
+main {
+  background-color: #f5f5f5;
 }
-a{
+a {
   color: unset;
   text-decoration: none;
 }
 
-::-webkit-scrollbar { width: 4px; height: 6px; }
-::-webkit-scrollbar-button { width: 4px; height:0px; }
-::-webkit-scrollbar-track { background: #e1e1e1; box-shadow: 0px 0px 3px #fffafa inset; }
-::-webkit-scrollbar-thumb { background: #b3b2b2; border-radius: 8px; }
-::-webkit-scrollbar-thumb:hover { background: #847e7e; }
+// scrollbar
+::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+::-webkit-scrollbar-button {
+  width: 4px;
+  height: 0px;
+}
+::-webkit-scrollbar-track {
+  background: #e1e1e1;
+  box-shadow: 0px 0px 3px #fffafa inset;
+}
+::-webkit-scrollbar-thumb {
+  background: #b3b2b2;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #847e7e;
+}

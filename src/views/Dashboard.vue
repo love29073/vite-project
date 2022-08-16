@@ -1,8 +1,5 @@
 <template>
-  <section>
-    To be continued
-  </section>
+  <section>To be continued</section>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>

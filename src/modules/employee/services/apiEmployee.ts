@@ -1,24 +1,24 @@
-import axios from 'axios';
+import axios from "axios";
 
 class useEmployee {
   getAll(): Promise<any> {
-    return axios.get(`/api/department/readAll`);
+    return axios.get(`/api/employee/readAll`);
   }
 
   get(id: number): Promise<any> {
-    return axios.get(`/api/department/${id}`);
+    return axios.get(`/api/employee/${id}`);
   }
 
   create(data: any): Promise<any> {
-    return axios.post('/api/department/create', data);
+    return axios.post("/api/employee/create", data);
   }
 
   update(id: number, data: any): Promise<any> {
-    return axios.put(`/api/department/update/${id}`, data);
+    return axios.put(`/api/employee/update/${id}`, data);
   }
 
   delete(id: number): Promise<any> {
-    return axios.delete(`/api/department/delete/${id}`);
+    return axios.delete(`/api/employee/delete/${id}`);
   }
 
   // deleteAll(): Promise<any>{

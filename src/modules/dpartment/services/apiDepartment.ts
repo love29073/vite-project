@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 class useDpartment {
   getAll(): Promise<any> {
@@ -10,7 +10,7 @@ class useDpartment {
   }
 
   create(data: any): Promise<any> {
-    return axios.post('/api/department/create', data);
+    return axios.post("/api/department/create", data);
   }
 
   update(id: number, data: any): Promise<any> {
