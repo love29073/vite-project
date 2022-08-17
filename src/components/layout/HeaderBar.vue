@@ -29,23 +29,24 @@
             </svg>
           </div>
         </div>
-        <div class="col-lg-10 col-md-9 col-sm-9 col-7 ms-sm-auto px-md-4">
-          <div class="d-flex align-items-center justify-content-end">
-            <el-dropdown :hide-on-click="false">
-              <span class="d-flex align-items-center el-dropdown-link">
-                <el-avatar :icon="UserFilled" :size="32" fit="contain" />
-                <el-icon class="el-icon--right"><arrow-down /></el-icon>
-              </span>
-              <template #dropdown>
-                <el-dropdown-menu>
-                  <el-dropdown-item>個人資料</el-dropdown-item>
-                  <el-dropdown-item divided>
-                    <a :href="logoutUrl" @click="logout">登出</a>
-                  </el-dropdown-item>
-                </el-dropdown-menu>
-              </template>
-            </el-dropdown>
-          </div>
+        <div
+          class="col-lg-10 col-md-9 col-sm-9 col-7 ms-sm-auto px-md-4 d-flex align-items-center justify-content-between"
+        >
+          <breadcrumb-item />
+          <el-dropdown :hide-on-click="false">
+            <span class="d-flex align-items-center el-dropdown-link">
+              <el-avatar :icon="UserFilled" :size="32" fit="contain" />
+              <el-icon class="el-icon--right"><arrow-down /></el-icon>
+            </span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item>個人資料</el-dropdown-item>
+                <el-dropdown-item divided>
+                  <a :href="logoutUrl" @click="logout">登出</a>
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
         </div>
       </div>
     </div>
@@ -57,13 +58,14 @@ import { UserFilled } from "@element-plus/icons-vue";
 import { useThemeConfig } from "@/store/useThemeConfig";
 import { useUserConfig } from "@/store/useUserConfig";
 import { storeToRefs } from "pinia";
+import BreadcrumbItem from "./BreadcrumbItem.vue";
 
 const storeTheme = useThemeConfig();
 const storUser = useUserConfig();
 const { toggleSidebar } = storeTheme;
 const { logoutUrl } = storeToRefs(storUser);
 
-console.log(logoutUrl.value);
+// console.log(logoutUrl.value);
 
 const logout = () => {
   localStorage.setItem("isAuthenticated", "false");

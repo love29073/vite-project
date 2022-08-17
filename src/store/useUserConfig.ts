@@ -9,7 +9,7 @@ export const useUserConfig = defineStore("userConfig", () => {
     "https://gjerigoe0egdjo8023.auth.ap-northeast-1.amazoncognito.com/oauth2";
   const response_type = "code";
   const client_id = "77or6qbh1de45pogvubjtn9mnr";
-  const redirect_uri = "http://localhost:3000/login";
+  const redirect_uri = "http://localhost:3000/process";
   const scope = "email%20openid";
   const code_challenge_method = "S256";
   let code_challenge = "";
@@ -18,7 +18,7 @@ export const useUserConfig = defineStore("userConfig", () => {
   let access_token = ref("");
   let loginSuccess = ref(false);
   const logoutUrl = ref(
-    `https://gjerigoe0egdjo8023.auth.ap-northeast-1.amazoncognito.com/logout?client_id=${client_id}&logout_uri=${redirect_uri}`
+    `https://gjerigoe0egdjo8023.auth.ap-northeast-1.amazoncognito.com/logout?client_id=${client_id}&logout_uri=http://localhost:3000/login`
   );
 
   //action

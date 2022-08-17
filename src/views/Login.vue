@@ -13,38 +13,19 @@
 
 <script setup lang="ts">
 import { useUserConfig } from "@/store/useUserConfig";
-import { storeToRefs } from "pinia";
-import { onMounted, watch, ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { ElMessage } from "element-plus";
 
 const store = useUserConfig();
 const route = useRoute();
 const router = useRouter();
-const { getToken } = store;
 const { getUrl } = store;
-const { loginSuccess } = storeToRefs(store);
 let url = ref("");
 
 onMounted(() => {
-  let code: any = route.query.code;
-  if (!code) {
-    getUrl().then((data) => {
-      url.value = data;
-    });
-  } else {
-    getToken(code);
-  }
-});
-
-watch(loginSuccess, (newValue, oldValue) => {
-  if (newValue == true) {
-    ElMessage({
-      message: "登入成功。",
-      type: "success",
-    });
-    router.push({ name: "Dashboard" });
-  }
+  getUrl().then((data) => {
+    url.value = data;
+  });
 });
 </script>
 

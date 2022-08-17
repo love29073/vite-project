@@ -9,19 +9,21 @@ import MainLayout from "@/components/layout/MainLayout.vue";
  * 1 一般為首頁 / -> 只顯示第一個子項
  * 2 為無子選單的選單項 /config -> /config/person 無上下級，使用一級title
  * 3 正常選單 /system -> /system/1 | /system/2 有上下級
+ *
+ * roles: ['admin', 'editor']
  * **/
 
 export const dashboardRoute: RouteRecordRaw = {
   path: "",
   component: MainLayout,
   redirect: "/dashboard",
-  meta: { title: "首頁", breadcrumb: false, menuType: 1 },
+  meta: { title: "首頁", menuType: 1 },
   children: [
     {
       path: "dashboard",
       name: "Dashboard",
       component: () => import("@/views/Dashboard.vue"),
-      meta: { title: "首頁" },
+      meta: { title: "首頁", breadcrumb: false },
     },
   ],
 };
@@ -57,6 +59,12 @@ const routes: RouteRecordRaw[] = [
     name: "Login",
     component: () => import("@/views/Login.vue"),
     meta: { title: "登入", hidden: true },
+  },
+  {
+    path: "/process",
+    name: "LoginOAuth",
+    component: () => import("@/views/LoginOAuth.vue"),
+    meta: { title: "登入中...", hidden: true },
   },
   {
     path: "/dpartment",

@@ -4,7 +4,7 @@
     <div class="row">
       <side-bar />
       <main
-        class="ms-sm-auto px-md-4 py-md-4 py-sm-2 py-3 main-content"
+        class="ms-sm-auto px-md-3 py-md-3 py-sm-2 py-3 main-content"
         :class="[
           isCollapse ? 'col-md-9 col-lg-10 notCollapse' : 'col-md-12 col-lg-12',
         ]"
