@@ -7,8 +7,8 @@ import MainLayout from "@/components/layout/MainLayout.vue";
  *
  * menuType
  * 1 一般為首頁 / -> 只顯示第一個子項
- * 2 為無子選單的選單項 /config -> /config/person 無上下級，使用一級title
- * 3 正常選單 /system -> /system/1 | /system/2 有上下級
+ * 2 為無子選單的選單項 /system -> /system/one 無上下級
+ * 3 正常選單 /system -> /system/first | /system/second 有上下級
  *
  * roles: ['admin', 'editor']
  * **/
@@ -70,8 +70,7 @@ const routes: RouteRecordRaw[] = [
     path: "/dpartment",
     name: "dpartment",
     component: MainLayout,
-    redirect: "/dpartment/info",
-    meta: { title: "部門資訊", breadcrumb: false, menuType: 3 },
+    meta: { title: "部門資訊", menuType: 3 },
     children: [
       {
         path: "info",
@@ -84,6 +83,20 @@ const routes: RouteRecordRaw[] = [
         name: "EmployeeView",
         component: () => import("@/modules/employee/views/EmployeeView.vue"),
         meta: { title: "員工列表" },
+      },
+    ],
+  },
+  {
+    path: "/test",
+    component: MainLayout,
+    redirect: "/test/index",
+    meta: { title: "測試yoyoyoyo", breadcrumb: false, menuType: 2 },
+    children: [
+      {
+        path: "index",
+        name: "DepartmentView9999",
+        component: () => import("@/modules/dpartment/views/DepartmentView.vue"),
+        meta: { title: "測試yoyoyoyo" },
       },
     ],
   },
