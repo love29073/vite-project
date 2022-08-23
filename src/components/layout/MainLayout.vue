@@ -58,6 +58,7 @@ export default defineComponent({
 .main-content {
   position: relative;
   height: calc(100vh - 46px);
+  overflow-y: auto;
   transition: all 0.45s ease;
   &.notCollapse {
     position: absolute;

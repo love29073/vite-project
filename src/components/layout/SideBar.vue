@@ -49,7 +49,6 @@ const activePath = computed(() => {
 }
 .sidebar {
   height: calc(100vh - 46px);
-  overflow: hidden;
   overflow-y: auto;
   transition: all 0.45s ease;
   transform: translateX(0%);
