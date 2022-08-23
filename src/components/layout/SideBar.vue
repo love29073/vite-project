@@ -48,7 +48,8 @@ const activePath = computed(() => {
   border-right: 0px;
 }
 .sidebar {
-  height: 100vh;
+  height: calc(100vh - 46px);
+  overflow-y: auto;
   transition: all 0.45s ease;
   transform: translateX(0%);
   border-right: 1px solid #ddd;

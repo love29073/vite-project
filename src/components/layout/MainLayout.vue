@@ -57,7 +57,7 @@ export default defineComponent({
 @import "@/assets/scss/mixin.scss";
 .main-content {
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - 46px);
   transition: all 0.45s ease;
   &.notCollapse {
     position: absolute;
