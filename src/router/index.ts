@@ -17,7 +17,7 @@ export const dashboardRoute: RouteRecordRaw = {
   path: "",
   component: MainLayout,
   redirect: "/dashboard",
-  meta: { title: "首頁", menuType: 1 },
+  meta: { title: "首頁", menuType: 1, icon: "HomeFilled" },
   children: [
     {
       path: "dashboard",

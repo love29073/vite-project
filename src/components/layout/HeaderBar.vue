@@ -6,10 +6,7 @@
           class="col-lg-2 col-md-3 col-sm-3 col-5 d-flex align-items-center justify-content-between logo-bar"
         >
           <div class="logo">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Service_mark.svg/1280px-Service_mark.svg.png"
-              alt=""
-            />
+            <img src="../../assets/img/example.png" alt="" />
           </div>
           <div
             @click="toggleSidebar()"
@@ -88,7 +85,7 @@ const logout = () => {
     }
     img {
       width: auto;
-      height: 40px;
+      height: 25px;
     }
   }
   .toggle-btn {

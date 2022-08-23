@@ -4,10 +4,10 @@
       <div class="title py-3">
         <div class="d-flex align-items-center">
           <el-avatar
-            src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw9kkioHRLqjNVqdYjWHdKWCLEYKfjJRoCYw&usqp=CAU"
           />
           <div class="ps-2">
-            <div class="name">王小明</div>
+            <div class="name">王志明</div>
             <div class="greeting">大樓管理員，您好！</div>
           </div>
         </div>

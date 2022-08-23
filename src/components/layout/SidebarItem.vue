@@ -5,6 +5,9 @@
     key="second-floor"
   >
     <template #title>
+      <el-icon>
+        <component :is="props.menu.meta?.icon"></component>
+      </el-icon>
       <span>{{ props.menu.meta?.title }}</span>
     </template>
     <template v-for="children in props.menu.children" :key="children.path">
@@ -18,6 +21,9 @@
   <router-link v-else :to="menuPath" key="normal-floor">
     <el-menu-item :index="menuPath" v-if="!props.menu.meta?.hidden">
       <template #title>
+        <el-icon>
+          <component :is="props.menu.meta?.icon"></component>
+        </el-icon>
         <span>{{
           props.menu.meta?.menuType === 1
             ? props.menu.children && props.menu.children[0].meta?.title
