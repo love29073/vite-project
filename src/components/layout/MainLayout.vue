@@ -35,9 +35,9 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import HeaderBar from "@/components/layout/HeaderBar.vue";
 import SideBar from "@/components/layout/SideBar.vue";
-import { defineComponent, computed, ref } from "vue";
 import { useThemeConfig } from "@/store/useThemeConfig";
 import { storeToRefs } from "pinia";
 
@@ -57,7 +57,7 @@ export default defineComponent({
 @import "@/assets/scss/mixin.scss";
 .main-content {
   position: relative;
-  min-height: 100vh;
+  height: calc(100vh - 46px);
   transition: all 0.45s ease;
   &.notCollapse {
     position: absolute;

@@ -67,36 +67,178 @@ const routes: RouteRecordRaw[] = [
     meta: { title: "登入中...", hidden: true },
   },
   {
-    path: "/dpartment",
-    name: "dpartment",
+    path: "/base",
+    name: "base",
     component: MainLayout,
-    meta: { title: "部門資訊", menuType: 3 },
+    meta: { title: "基本資料管理", menuType: 3, icon: "Setting" },
     children: [
       {
-        path: "info",
-        name: "DepartmentView",
-        component: () => import("@/modules/dpartment/views/DepartmentView.vue"),
-        meta: { title: "部門總覽" },
+        path: "building",
+        name: "BuildingManage",
+        component: () => import("@/modules/demo/base/BuildingManage.vue"),
+        meta: { title: "大樓資產管理" },
       },
       {
-        path: "employee",
-        name: "EmployeeView",
-        component: () => import("@/modules/employee/views/EmployeeView.vue"),
-        meta: { title: "員工列表" },
+        path: "mechatronics",
+        name: "MechatronicsManage",
+        component: () => import("@/modules/demo/base/MechatronicsManage.vue"),
+        meta: { title: "機電資產管理" },
+      },
+      {
+        path: "firm",
+        name: "FirmManage",
+        component: () => import("@/modules/demo/base/FirmManage.vue"),
+        meta: { title: "包商管理" },
       },
     ],
   },
   {
-    path: "/test",
+    path: "/user",
+    name: "user",
     component: MainLayout,
-    redirect: "/test/index",
-    meta: { title: "測試yoyoyoyo", breadcrumb: false, menuType: 2 },
+    meta: { title: "使用者管理", menuType: 3, icon: "User" },
     children: [
       {
-        path: "index",
-        name: "DepartmentView9999",
-        component: () => import("@/modules/dpartment/views/DepartmentView.vue"),
-        meta: { title: "測試yoyoyoyo" },
+        path: "account",
+        name: "AccountManage",
+        component: () => import("@/modules/demo/user/AccountManage.vue"),
+        meta: { title: "帳號管理" },
+      },
+      {
+        path: "role",
+        name: "RoleManage",
+        component: () => import("@/modules/demo/user/RoleManage.vue"),
+        meta: { title: "角色管理" },
+      },
+      {
+        path: "permission",
+        name: "PermissionManage",
+        component: () => import("@/modules/demo/user/PermissionManage.vue"),
+        meta: { title: "權限管理" },
+      },
+    ],
+  },
+  {
+    path: "/building",
+    name: "building",
+    component: MainLayout,
+    meta: { title: "大樓管理", menuType: 3, icon: "OfficeBuilding" },
+    children: [
+      {
+        path: "account",
+        name: "AdministratorSetting",
+        component: () =>
+          import("@/modules/demo/building/AdministratorSetting.vue"),
+        meta: { title: "大樓管理員設定" },
+      },
+    ],
+  },
+  {
+    path: "/mechatronics",
+    name: "mechatronics",
+    component: MainLayout,
+    meta: { title: "機電管理", menuType: 3, icon: "Discount" },
+    children: [
+      {
+        path: "mechatronics-record",
+        name: "MechatronicsRecord",
+        component: () =>
+          import("@/modules/demo/mechatronics/MechatronicsRecord.vue"),
+        meta: { title: "通報紀錄" },
+      },
+      {
+        path: "dispatch-record",
+        name: "DispatchRecord",
+        component: () =>
+          import("@/modules/demo/mechatronics/DispatchRecord.vue"),
+        meta: { title: "派工紀錄" },
+      },
+      {
+        path: "inspection-plan",
+        name: "InspectionPlan",
+        component: () =>
+          import("@/modules/demo/mechatronics/InspectionPlan.vue"),
+        meta: { title: "巡檢計劃" },
+      },
+    ],
+  },
+  {
+    path: "/security",
+    name: "security",
+    component: MainLayout,
+    meta: { title: "保全管理", menuType: 3, icon: "Avatar" },
+    children: [
+      {
+        path: "security-record",
+        name: "SecurityRecord",
+        component: () => import("@/modules/demo/security/SecurityRecord.vue"),
+        meta: { title: "通報紀錄" },
+      },
+    ],
+  },
+  {
+    path: "/sanitary",
+    name: "sanitary",
+    component: MainLayout,
+    meta: { title: "清潔勞務管理", menuType: 3, icon: "TakeawayBox" },
+    children: [
+      {
+        path: "sanitary-record",
+        name: "SanitaryRecord",
+        component: () => import("@/modules/demo/sanitary/SanitaryRecord.vue"),
+        meta: { title: "通報紀錄" },
+      },
+    ],
+  },
+  {
+    path: "/repair",
+    name: "repair",
+    component: MainLayout,
+    meta: { title: "營建修繕管理", menuType: 3, icon: "FirstAidKit" },
+    children: [
+      {
+        path: "repair-record",
+        name: "RepairRecord",
+        component: () => import("@/modules/demo/repair/RepairRecord.vue"),
+        meta: { title: "通報紀錄" },
+      },
+    ],
+  },
+  {
+    path: "/report",
+    name: "report",
+    component: MainLayout,
+    meta: {
+      title: "統計報表",
+      breadcrumb: false,
+      menuType: 2,
+      icon: "Coin",
+    },
+    children: [
+      {
+        path: "report-form",
+        name: "ReportForm",
+        component: () => import("@/modules/demo/report/ReportForm.vue"),
+        meta: { title: "統計報表" },
+      },
+    ],
+  },
+  {
+    path: "/message",
+    name: "message",
+    component: MainLayout,
+    meta: {
+      title: "訊息管理",
+      breadcrumb: false,
+      menuType: 2,
+      icon: "Message",
+    },
+    children: [
+      {
+        path: "message-form",
+        name: "MessageManage",
+        component: () => import("@/modules/demo/message/MessageManage.vue"),
+        meta: { title: "訊息管理" },
       },
     ],
   },
