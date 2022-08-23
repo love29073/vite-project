@@ -24,11 +24,8 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const breadList = computed(() => {
-  console.log(router.currentRoute);
   return router.currentRoute.value.matched.filter(
     (item) => item.meta.breadcrumb !== false
   );
 });
 </script>
-
-<style lang="scss" scoped></style>
