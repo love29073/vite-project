@@ -21,7 +21,13 @@
   <router-link v-else :to="menuPath" key="normal-floor">
     <el-menu-item :index="menuPath" v-if="!props.menu.meta?.hidden">
       <template #title>
-        <el-icon v-if="props.menu.meta?.menuType !== 3 && props.menu.children">
+        <el-icon
+          v-if="
+            props.menu.meta?.menuType &&
+            props.menu.meta?.menuType !== 3 &&
+            props.menu.children
+          "
+        >
           <component :is="props.menu.meta?.icon"></component>
         </el-icon>
         <span>{{
