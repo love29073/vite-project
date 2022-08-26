@@ -8,7 +8,7 @@
       label-width="100px"
       :data="fetchDepartment"
       width="100%"
-      height="80vh"
+      height="60vh"
     >
       <el-table-column fixed label="部門編號" prop="deptno" />
       <el-table-column label="部門名稱" prop="dname" />

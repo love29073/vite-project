@@ -21,7 +21,13 @@
   <router-link v-else :to="menuPath" key="normal-floor">
     <el-menu-item :index="menuPath" v-if="!props.menu.meta?.hidden">
       <template #title>
-        <el-icon v-if="props.menu.meta?.menuType !== 3 && props.menu.children">
+        <el-icon
+          v-if="
+            props.menu.meta?.menuType &&
+            props.menu.meta?.menuType !== 3 &&
+            props.menu.children
+          "
+        >
           <component :is="props.menu.meta?.icon"></component>
         </el-icon>
         <span>{{
@@ -33,10 +39,12 @@
     </el-menu-item>
   </router-link>
 </template>
+
 <script lang="ts" setup>
 import { computed } from "vue";
 import type { PropType } from "vue";
 import type { RouteRecordRaw } from "vue-router";
+
 const props = defineProps({
   menu: {
     type: Object as PropType<RouteRecordRaw>,
@@ -48,6 +56,7 @@ const props = defineProps({
     required: true,
   },
 });
+
 const menuPath = computed(() => {
   if ([1, 2].includes(props.menu.meta?.menuType as number)) {
     return (
@@ -58,6 +67,7 @@ const menuPath = computed(() => {
   return props.path;
 });
 </script>
+
 <style lang="scss" scoped>
 .el-menu-item,
 .el-sub-menu .el-icon {

@@ -14,12 +14,13 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
+const route = useRoute();
 const breadList = computed(() => {
   return router.currentRoute.value.matched.filter(
-    (item) => item.meta.breadcrumb !== false
+    (item) => item.meta.breadcrumb !== false && route.path === item.path
   );
 });
 </script>

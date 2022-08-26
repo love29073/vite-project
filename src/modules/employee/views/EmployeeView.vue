@@ -8,7 +8,7 @@
       label-width="100px"
       :data="fetchEmployee"
       style="width: 100%"
-      height="80vh"
+      height="60vh"
     >
       <el-table-column label="員工編號" prop="empno" />
       <el-table-column label="員工名稱" prop="ename" />
