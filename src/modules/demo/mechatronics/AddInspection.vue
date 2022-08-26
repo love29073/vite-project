@@ -1,74 +1,76 @@
 <template>
-  <main-title />
-  <div class="mb-4 mt-n2">
-    <router-link :to="{ name: 'MechatronicsRecord' }">
-      <el-button type="info" :icon="'ArrowLeft'" link>
-        返回列表</el-button
-      ></router-link
-    >
-  </div>
-  <div class="bg-white p-3">
-    <el-form :label-position="'top'" label-width="100px">
-      <div class="row p-1">
-        <div class="col-md-4">
-          <el-form-item label="巡檢點大樓">
-            <el-input v-model="fakeData.building" />
-          </el-form-item>
-        </div>
-        <div class="col-md-4">
-          <el-form-item label="巡檢點名稱">
-            <el-input v-model="fakeData.name" />
-          </el-form-item>
-        </div>
-        <div class="col-md-4">
-          <el-form-item label="巡檢點類型">
-            <el-select
-              v-model="fakeData.type"
-              placeholder="巡檢點類型"
-              class="w-100"
-            >
-              <el-option
-                v-for="item in typeOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
+  <div>
+    <main-title />
+    <div class="mb-4 mt-n2">
+      <router-link :to="{ name: 'MechatronicsRecord' }">
+        <el-button type="info" :icon="'ArrowLeft'" link>
+          返回列表</el-button
+        ></router-link
+      >
+    </div>
+    <div class="bg-white p-3">
+      <el-form :label-position="'top'" label-width="100px">
+        <div class="row p-1">
+          <div class="col-md-4">
+            <el-form-item label="巡檢點大樓">
+              <el-input v-model="fakeData.building" />
+            </el-form-item>
+          </div>
+          <div class="col-md-4">
+            <el-form-item label="巡檢點名稱">
+              <el-input v-model="fakeData.name" />
+            </el-form-item>
+          </div>
+          <div class="col-md-4">
+            <el-form-item label="巡檢點類型">
+              <el-select
+                v-model="fakeData.type"
+                placeholder="巡檢點類型"
+                class="w-100"
+              >
+                <el-option
+                  v-for="item in typeOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                />
+              </el-select>
+            </el-form-item>
+          </div>
+          <div class="col-md-4">
+            <el-form-item label="打卡方式">
+              <el-select
+                v-model="fakeData.punch"
+                placeholder="打卡方式"
+                class="w-100"
+              >
+                <el-option
+                  v-for="item in punchOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                />
+              </el-select>
+            </el-form-item>
+          </div>
+          <div class="col-md-4">
+            <el-form-item label="啟用巡檢點">
+              <el-checkbox
+                v-model="fakeData.isOpen"
+                label="是否開啟巡檢點"
+                size="large"
               />
-            </el-select>
-          </el-form-item>
+            </el-form-item>
+          </div>
+          <div class="col-md-12">
+            <el-form-item class="float-end">
+              <el-button type="primary" @click="onSubmit">確認</el-button>
+              <el-button @click="onCancel">取消</el-button>
+            </el-form-item>
+          </div>
         </div>
-        <div class="col-md-4">
-          <el-form-item label="打卡方式">
-            <el-select
-              v-model="fakeData.punch"
-              placeholder="打卡方式"
-              class="w-100"
-            >
-              <el-option
-                v-for="item in punchOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              />
-            </el-select>
-          </el-form-item>
-        </div>
-        <div class="col-md-4">
-          <el-form-item label="啟用巡檢點">
-            <el-checkbox
-              v-model="fakeData.isOpen"
-              label="是否開啟巡檢點"
-              size="large"
-            />
-          </el-form-item>
-        </div>
-        <div class="col-md-12">
-          <el-form-item class="float-end">
-            <el-button type="primary" @click="onSubmit">確認</el-button>
-            <el-button @click="onCancel">取消</el-button>
-          </el-form-item>
-        </div>
-      </div>
-    </el-form>
+      </el-form>
+    </div>
   </div>
 </template>
 

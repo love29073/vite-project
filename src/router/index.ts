@@ -144,16 +144,14 @@ const routes: RouteRecordRaw[] = [
         name: "MechatronicsRecord",
         component: () =>
           import("@/modules/demo/mechatronics/MechatronicsRecord.vue"),
-        meta: { title: "通報紀錄", innerPage: true },
-        children: [
-          {
-            path: "/mechatronics/add-inspection",
-            name: "AddInspection",
-            component: () =>
-              import("@/modules/demo/mechatronics/AddInspection.vue"),
-            meta: { title: "建立巡檢點", hidden: true },
-          },
-        ],
+        meta: { title: "通報紀錄" },
+      },
+      {
+        path: "mechatronics-record/add-inspection",
+        name: "AddInspection",
+        component: () =>
+          import("@/modules/demo/mechatronics/AddInspection.vue"),
+        meta: { title: "建立巡檢點", resolvePath: true, hidden: true },
       },
       {
         path: "dispatch-record",

@@ -1,76 +1,71 @@
 <template>
   <div>
-    <div v-if="currentPage">
-      <main-title />
-      <div class="row mb-2">
-        <div class="col-md-6">
-          <el-input
-            v-model="inputSearch"
-            placeholder="請輸入巡檢點或編號"
-            class="input-with-select"
-          >
-            <template #prepend>
-              <el-select
-                v-model="selectSearch"
-                placeholder="搜尋類型"
-                style="width: 115px"
-              >
-                <el-option label="巡檢點" value="1" />
-                <el-option label="編號" value="2" />
-              </el-select>
-            </template>
-            <template #append>
-              <el-button :icon="'Search'" />
-            </template>
-          </el-input>
-        </div>
-        <div class="col-md-6">
-          <router-link :to="{ name: 'AddInspection' }">
-            <el-button type="primary" class="float-end"
-              >建立巡檢點</el-button
-            ></router-link
-          >
-        </div>
+    <main-title />
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <el-input
+          v-model="inputSearch"
+          placeholder="請輸入巡檢點或編號"
+          class="input-with-select"
+        >
+          <template #prepend>
+            <el-select
+              v-model="selectSearch"
+              placeholder="搜尋類型"
+              style="width: 115px"
+            >
+              <el-option label="巡檢點" value="1" />
+              <el-option label="編號" value="2" />
+            </el-select>
+          </template>
+          <template #append>
+            <el-button :icon="'Search'" />
+          </template>
+        </el-input>
       </div>
-      <div class="bg-white">
-        <el-table label-width="100px" :data="fakeData" width="100%">
-          <el-table-column label="巡檢點編號" prop="id" />
-          <el-table-column label="巡檢點名稱" prop="name" />
-          <el-table-column label="巡檢類型" prop="type" />
-          <el-table-column label="是否開啟">
-            <template #default="scope">
-              <span v-if="scope.row.isOpen === true">是</span>
-              <span v-else>否</span>
-            </template>
-          </el-table-column>
-          <el-table-column label="操作">
-            <template #default="scope">
-              <el-button
-                size="small"
-                @click="handleEdit(scope.$index, scope.row)"
-                >編輯</el-button
-              >
-              <el-button
-                size="small"
-                type="danger"
-                @click="handleDelete(scope.$index, scope.row)"
-                >刪除</el-button
-              >
-            </template>
-          </el-table-column>
-        </el-table>
-        <el-pagination
-          v-model:currentPage="currentPage1"
-          :page-size="10"
-          :small="true"
-          :background="true"
-          layout="total, prev, pager, next"
-          :total="200"
-          class="justify-content-end p-3"
-        />
+      <div class="col-md-6">
+        <router-link :to="{ name: 'AddInspection' }">
+          <el-button type="primary" class="float-end"
+            >建立巡檢點</el-button
+          ></router-link
+        >
       </div>
     </div>
-    <router-view v-else></router-view>
+    <div class="bg-white">
+      <el-table label-width="100px" :data="fakeData" width="100%">
+        <el-table-column label="巡檢點編號" prop="id" />
+        <el-table-column label="巡檢點名稱" prop="name" />
+        <el-table-column label="巡檢類型" prop="type" />
+        <el-table-column label="是否開啟">
+          <template #default="scope">
+            <span v-if="scope.row.isOpen === true">是</span>
+            <span v-else>否</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作">
+          <template #default="scope">
+            <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
+              >編輯</el-button
+            >
+            <el-button
+              size="small"
+              type="danger"
+              @click="handleDelete(scope.$index, scope.row)"
+              >刪除</el-button
+            >
+          </template>
+        </el-table-column>
+      </el-table>
+      <el-pagination
+        v-model:currentPage="currentPage1"
+        :page-size="10"
+        :small="true"
+        :background="true"
+        layout="total, prev, pager, next"
+        :total="200"
+        class="justify-content-end p-3"
+      />
+    </div>
   </div>
 </template>
 
