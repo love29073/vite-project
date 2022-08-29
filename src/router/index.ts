@@ -167,6 +167,13 @@ const routes: RouteRecordRaw[] = [
           import("@/modules/demo/mechatronics/InspectionPlan.vue"),
         meta: { title: "巡檢計劃" },
       },
+      {
+        path: "inspection-plan/add-inspection-plan",
+        name: "AddInspectionPlan",
+        component: () =>
+          import("@/modules/demo/mechatronics/AddInspectionPlan.vue"),
+        meta: { title: "建立巡檢計劃", resolvePath: true, hidden: true },
+      },
     ],
   },
   {

@@ -64,8 +64,8 @@
           </div>
           <div class="col-md-12">
             <el-form-item class="float-end">
-              <el-button type="primary" @click="onSubmit">確認</el-button>
               <el-button @click="onCancel">取消</el-button>
+              <el-button type="primary" @click="onSubmit">確認</el-button>
             </el-form-item>
           </div>
         </div>
@@ -78,6 +78,7 @@
 import MainTitle from "@/components/layout/MainTitle.vue";
 import { useRouter } from "vue-router";
 import { reactive } from "vue";
+import { ElMessage } from "element-plus";
 
 export default {
   name: "AddInspection",
@@ -103,14 +104,6 @@ export default {
         value: "機電修繕",
         label: "機電修繕",
       },
-      {
-        value: "Option4",
-        label: "Option4",
-      },
-      {
-        value: "Option5",
-        label: "Option5",
-      },
     ];
     const punchOptions = [
       {
@@ -122,6 +115,10 @@ export default {
 
     const onSubmit = () => {
       console.log("fakeSubmit");
+      ElMessage({
+        message: "巡檢計劃新增成功。",
+        type: "success",
+      });
     };
     const onCancel = () => {
       router.push({ name: "MechatronicsRecord" });

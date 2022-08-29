@@ -24,7 +24,9 @@
         </el-input>
       </div>
       <div class="col-md-6">
-        <el-button type="primary" class="float-end">建立巡檢計劃</el-button>
+        <router-link :to="{ name: 'AddInspectionPlan' }">
+          <el-button type="primary" class="float-end">建立巡檢計劃</el-button>
+        </router-link>
       </div>
     </div>
     <div class="bg-white">
@@ -100,13 +102,7 @@
         <el-table-column label="操作">
           <template #default="scope">
             <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
-              >編輯</el-button
-            >
-            <el-button
-              size="small"
-              type="danger"
-              @click="handleDelete(scope.$index, scope.row)"
-              >刪除</el-button
+              >查看詳細計劃</el-button
             >
           </template>
         </el-table-column>
@@ -181,9 +177,6 @@ export default {
     const handleEdit = (index: any, row: any) => {
       console.log(index, row);
     };
-    const handleDelete = (index: any, row: any) => {
-      console.log(index, row);
-    };
 
     return {
       inputSearch,
@@ -193,7 +186,6 @@ export default {
       currentPage1,
       formatPerson,
       handleEdit,
-      handleDelete,
     };
   },
 };
