@@ -78,12 +78,6 @@ const routes: RouteRecordRaw[] = [
         component: () => import("@/modules/dpartment/views/DepartmentView.vue"),
         meta: { title: "部門總覽" },
       },
-      {
-        path: "employee",
-        name: "EmployeeView",
-        component: () => import("@/modules/employee/views/EmployeeView.vue"),
-        meta: { title: "員工列表" },
-      },
     ],
   },
   {

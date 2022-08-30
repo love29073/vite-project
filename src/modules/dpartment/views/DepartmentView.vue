@@ -86,14 +86,14 @@
 
 <script lang="ts">
 import { defineComponent, ref, reactive, onMounted, computed } from "vue";
-import type IDepartmentVo from "../models/IDepartmentVo";
+import type IDepartmentVO from "../models/IDepartmentVO";
 import apiDepartment from "../services/apiDepartment";
 import { ElMessage, ElMessageBox } from "element-plus";
 
 export default defineComponent({
   name: "DpartmentView",
   setup() {
-    let department = ref<IDepartmentVo[]>([]);
+    let department = ref<IDepartmentVO[]>([]);
     let search = ref("");
     const addDepartmentVisible = ref(false);
     const updateDepartmentVisible = ref(false);
@@ -170,7 +170,7 @@ export default defineComponent({
     };
 
     //編輯(更新)部門
-    const handleEdit = (index: number, row: IDepartmentVo) => {
+    const handleEdit = (index: number, row: IDepartmentVO) => {
       console.log(index, row.deptno);
 
       formDepartment.deptno = row.deptno;
@@ -202,7 +202,7 @@ export default defineComponent({
     };
 
     //刪除部門
-    const handleDelete = (index: number, row: IDepartmentVo) => {
+    const handleDelete = (index: number, row: IDepartmentVO) => {
       ElMessageBox.confirm("確定要刪除此部門？", "提示", {
         confirmButtonText: "確認",
         cancelButtonText: "取消",
