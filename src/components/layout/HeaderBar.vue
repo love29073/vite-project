@@ -70,7 +70,6 @@ const logout = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/mixin.scss";
 .logo-bar {
   height: 45px;
   user-select: none;

@@ -1,0 +1,55 @@
+#app {
+  margin: 0 auto;
+  color: $blackColor;
+  font-weight: normal;
+  font-family: $font-default;
+}
+main {
+  background-color: #f5f5f5;
+}
+a {
+  color: unset;
+  text-decoration: none;
+}
+
+// scrollbar
+::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+::-webkit-scrollbar-button {
+  width: 4px;
+  height: 0px;
+}
+::-webkit-scrollbar-track {
+  background: #f2f2f2;
+  box-shadow: 0px 0px 3px #fffafa inset;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(67, 154, 235, 0.15);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(67, 154, 235, 0.45);
+}
+
+// custom element plus
+.el-breadcrumb__inner a,
+.el-breadcrumb__inner.is-link {
+  font-weight: 400;
+  color: #999999;
+}
+.menuHasNoLink .el-breadcrumb__inner {
+  color: #999999;
+  cursor: default;
+}
+.el-breadcrumb__item:last-child .el-breadcrumb__inner,
+.el-breadcrumb__item:last-child .el-breadcrumb__inner a,
+.el-breadcrumb__item:last-child .el-breadcrumb__inner a:hover,
+.el-breadcrumb__item:last-child .el-breadcrumb__inner:hover {
+  color: #333333;
+  cursor: default;
+}
+.el-table th.el-table__cell > .cell {
+  font-weight: 500;
+}

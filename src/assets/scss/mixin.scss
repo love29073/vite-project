@@ -6,7 +6,7 @@ $device: (
   xlpad: 1025px,
   padair: 992px,
   pad: 769px,
-  phone: 576px
+  phone: 576px,
 );
 
 // 取得自訂斷點
@@ -41,5 +41,32 @@ $device: (
     @media all and (max-width: $size) {
       @content;
     }
+  }
+}
+
+// font style
+@mixin fontStyle($font-family, $font-size, $font-weight, $font-color) {
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  @if ($font-color == default) {
+    color: $blackColor;
+  } @else {
+    color: $font-color;
+  }
+}
+
+// 設定 flexbox
+// 若 $align = center，則水平、垂直皆置中
+// 若 $align = x，則水平置中
+@mixin flexbox($align) {
+  display: flex;
+  @if ($align == center) {
+    align-items: center;
+    justify-content: center;
+  } @else if($align == x) {
+    justify-content: center;
+  } @else if($align == y) {
+    align-items: center;
   }
 }
