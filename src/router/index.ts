@@ -61,12 +61,6 @@ const routes: RouteRecordRaw[] = [
     meta: { title: "登入", hidden: true },
   },
   {
-    path: "/process",
-    name: "LoginOAuth",
-    component: () => import("@/views/LoginOAuth.vue"),
-    meta: { title: "登入中...", hidden: true },
-  },
-  {
     path: "/base",
     name: "base",
     component: MainLayout,

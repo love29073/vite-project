@@ -43,7 +43,6 @@ const activePath = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/mixin.scss";
 .el-menu {
   border-right: 0px;
 }

@@ -1,4 +1,4 @@
-import router from "./router";
+import router from ".";
 import { ElMessage } from "element-plus";
 import { storeToRefs } from "pinia";
 import { useUserConfig } from "@/store/useUserConfig";

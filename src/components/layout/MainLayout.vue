@@ -54,7 +54,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/mixin.scss";
 .main-content {
   position: relative;
   height: calc(100vh - 46px);
