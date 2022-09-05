@@ -70,3 +70,12 @@ $device: (
     align-items: center;
   }
 }
+
+// background image center
+@mixin backgroundImageCenter($bgImg) {
+  position: relative;
+  background-image: url($bgImg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
