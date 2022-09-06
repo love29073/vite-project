@@ -6,7 +6,7 @@
       <div
         class="row g-0 full-column col-sm-12 col-md-10 col-lg-8 col-xl-6 col-md-offset-1 col-lg-offset-2 col-xl-offset-3"
       >
-        <div class="col-md-4 col-sm-3 left-column">
+        <div class="col-md-4 col-sm-4 left-column">
           <div>
             <div class="logo mb-4">
               <img src="@/assets/img/example.png" alt="logo" />
@@ -15,7 +15,7 @@
             <p class="subtitle">歡迎回來! Welcome Back!</p>
           </div>
         </div>
-        <div class="col-md-8 col-sm-9 right-column">
+        <div class="col-md-8 col-sm-8 right-column">
           <div>
             <h2 class="title mb-5">登入Sign In</h2>
             <el-form
@@ -84,6 +84,9 @@ const userInfo = reactive({
     background-color: $secondColor;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
+    @include res(phone, to-mb) {
+      display: none;
+    }
     .title {
       @include fontStyle($font-en-title, 20px, 600, default);
     }
@@ -110,6 +113,13 @@ const userInfo = reactive({
     background-color: $greyColor;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+    @include res(phone, to-mb) {
+      height: 380px;
+      border-radius: 8px;
+    }
+    .el-form--label-top .el-form-item {
+      min-width: 235px;
+    }
   }
 }
 </style>

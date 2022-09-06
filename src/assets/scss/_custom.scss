@@ -1,7 +1,7 @@
 #app {
   margin: 0 auto;
   color: $blackColor;
-  font-weight: normal;
+  font-weight: 400;
   font-family: $font-default;
 }
 main {
@@ -52,4 +52,8 @@ a {
 }
 .el-table th.el-table__cell > .cell {
   font-weight: 500;
+}
+.el-button > span {
+  font-weight: 400;
+  letter-spacing: 0.45px;
 }
