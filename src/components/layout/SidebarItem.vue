@@ -71,13 +71,10 @@ const menuPath = computed(() => {
 <style lang="scss" scoped>
 .el-menu-item,
 .el-sub-menu .el-icon {
-  color: #304156;
+  color: #bfcbd9;
 }
 .el-menu-item .el-icon {
   margin-bottom: -1.5px;
-}
-.el-sub-menu__title {
-  color: #304156;
 }
 .el-menu-item.is-active {
   background-color: var(--el-menu-hover-bg-color);

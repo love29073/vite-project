@@ -1,31 +1,36 @@
 <template>
-  <nav class="sidebar" :class="[isCollapse ? 'col-md-3 col-lg-2' : 'notShow']">
+  <nav
+    class="sidebar p-0"
+    :class="[isCollapse ? 'col-md-3 col-lg-2 darkBg' : 'notShow']"
+  >
     <div class="user">
-      <div class="title py-3">
-        <div class="d-flex align-items-center">
-          <el-avatar
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw9kkioHRLqjNVqdYjWHdKWCLEYKfjJRoCYw&usqp=CAU"
-          />
-          <div class="ps-2">
-            <div class="name">王志明</div>
-            <div class="greeting">大樓管理員，您好！</div>
-          </div>
+      <div class="title py-3 px-4">
+        <div class="name">
+          <el-icon class="me-1"><UserFilled /></el-icon>王志明
         </div>
+        <div class="greeting">大樓管理員，您好！</div>
       </div>
     </div>
-    <el-menu :default-active="activePath">
-      <sidebar-item
-        v-for="(menu, key) in allRoutes"
-        :key="key"
-        :menu="menu"
-        :path="menu.path"
-      />
-    </el-menu>
+    <el-scrollbar>
+      <el-menu
+        :default-active="activePath"
+        background-color="#304156"
+        active-text-color="#ffd04b"
+        text-color="#bfcbd9"
+      >
+        <sidebar-item
+          v-for="(menu, key) in allRoutes"
+          :key="key"
+          :menu="menu"
+          :path="menu.path"
+        />
+      </el-menu>
+    </el-scrollbar>
   </nav>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { ref, computed, onMounted, nextTick } from "vue";
 import { useThemeConfig } from "@/store/useThemeConfig";
 import { storeToRefs } from "pinia";
 import { useRouter, useRoute } from "vue-router";
@@ -48,15 +53,17 @@ const activePath = computed(() => {
 }
 .sidebar {
   height: calc(100vh - 46px);
-  overflow-y: auto;
+  overflow-y: hidden;
   transition: all 0.45s ease;
   transform: translateX(0%);
   border-right: 1px solid #ddd;
+  background-color: $secondColor;
   @include res(phone, to-mb) {
     border-right: 0px;
   }
   ul {
-    overflow: hidden;
+    padding-bottom: 90px;
+    background-color: $secondColor;
   }
   &.notShow {
     position: absolute;
@@ -69,12 +76,25 @@ const activePath = computed(() => {
   }
   .user {
     border-bottom: 1px solid #ddd;
+    .title {
+      background-color: #394a5f;
+    }
     .name {
+      display: flex;
+      align-items: center;
       font-size: 15px;
+      color: $obviousTextColor;
+      letter-spacing: 0.3px;
     }
     .greeting {
       font-size: 14px;
-      color: #555;
+      color: $greyColor;
+      letter-spacing: 0.3px;
+    }
+  }
+  &.darkBg {
+    .user {
+      border-bottom: 0px;
     }
   }
 }

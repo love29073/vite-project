@@ -1,9 +1,10 @@
 <template>
-  <header class="border-bottom sticky-top">
+  <header class="sticky-top">
     <div class="container-fluid">
       <div class="row d-flex align-items-center">
         <div
-          class="col-lg-2 col-md-3 col-sm-3 col-5 d-flex align-items-center justify-content-between logo-bar"
+          class="col-lg-2 col-md-3 col-sm-3 col-12 d-flex align-items-center justify-content-between logo-bar"
+          :class="{ darkBg: isCollapse }"
         >
           <div class="logo">
             <img src="@/assets/img/example.png" alt="logo" />
@@ -27,12 +28,15 @@
           </div>
         </div>
         <div
-          class="col-lg-10 col-md-9 col-sm-9 col-7 ms-sm-auto px-md-4 d-flex align-items-center justify-content-between"
+          class="col-lg-10 col-md-9 col-sm-9 col-12 ms-sm-auto px-md-4 d-flex align-items-center justify-content-between"
         >
           <breadcrumb-item />
           <el-dropdown :hide-on-click="false">
             <span class="d-flex align-items-center el-dropdown-link">
-              <el-avatar :icon="UserFilled" :size="32" fit="contain" />
+              <el-avatar
+                :size="32"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw9kkioHRLqjNVqdYjWHdKWCLEYKfjJRoCYw&usqp=CAU"
+              />
               <el-icon class="el-icon--right"><arrow-down /></el-icon>
             </span>
             <template #dropdown>
@@ -51,7 +55,6 @@
 </template>
 
 <script setup lang="ts">
-import { UserFilled } from "@element-plus/icons-vue";
 import { useThemeConfig } from "@/store/useThemeConfig";
 import { useUserConfig } from "@/store/useUserConfig";
 import { storeToRefs } from "pinia";
@@ -61,8 +64,7 @@ const storeTheme = useThemeConfig();
 const storUser = useUserConfig();
 const { toggleSidebar } = storeTheme;
 const { logoutUrl } = storeToRefs(storUser);
-
-// console.log(logoutUrl.value);
+const { isCollapse } = storeToRefs(storeTheme);
 
 const logout = () => {
   localStorage.setItem("isAuthenticated", "false");
@@ -74,6 +76,18 @@ const logout = () => {
   height: 45px;
   user-select: none;
   border-right: 1px solid #ddd;
+  @include transition(all, 0.45s, ease-in-out);
+  &.darkBg {
+    background-color: $secondColor;
+    .toggle-btn {
+      svg {
+        fill: $whiteColor;
+      }
+      &:hover {
+        color: rgba(255, 255, 255, 0.8);
+      }
+    }
+  }
   .logo {
     position: relative;
     display: block;
