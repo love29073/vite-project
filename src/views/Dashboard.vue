@@ -67,7 +67,7 @@
         </template>
       </el-table-column>
       <el-table-column label="公告內容" prop="contnet" />
-      <el-table-column label="詳細" width="80">
+      <el-table-column label="詳細" width="80" align="center">
         <template #default="scope" class="text-center">
           <el-icon><ArrowRight /></el-icon>
         </template>
